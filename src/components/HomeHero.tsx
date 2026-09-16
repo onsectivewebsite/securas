@@ -40,7 +40,7 @@ export function HomeHero() {
             className="inline-flex items-center gap-2 rounded-full border border-accent-500/40 bg-accent-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-accent-400"
           >
             <Icon name="shield" className="h-3.5 w-3.5" />
-            Brampton &amp; Greater Toronto Area
+            Serving Across Ontario
           </motion.span>
           <motion.h1
             variants={item}
