@@ -96,21 +96,20 @@ export function HomeHero() {
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
-          <div className="relative overflow-hidden rounded-2xl border border-navy-700 shadow-2xl">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-navy-700 shadow-2xl sm:aspect-[5/6]">
             <Image
-              src="/images/patrol-car-toronto.jpg"
-              alt="Securas Security Group marked patrol vehicle with the Toronto skyline behind it"
-              width={1536}
-              height={1024}
+              src="/images/hero-guard.jpg"
+              alt="Uniformed Securas Security Group officer standing beside a branded patrol vehicle with the Toronto skyline behind him"
+              fill
               priority
-              className="h-full w-full object-cover"
+              className="object-cover object-top"
               sizes="(min-width: 1024px) 42vw, 92vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-navy-950/0 to-navy-950/0" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/0 to-navy-950/0" />
             <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-3 p-5">
               <span className="inline-flex items-center gap-2 rounded-full bg-navy-950/80 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide text-white backdrop-blur">
-                <Icon name="car" className="h-3.5 w-3.5 text-accent-500" />
-                Marked Patrol Fleet
+                <Icon name="shield" className="h-3.5 w-3.5 text-accent-500" />
+                Licensed Security Officers
               </span>
             </div>
           </div>

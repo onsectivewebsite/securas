@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
@@ -94,6 +95,23 @@ export default async function ServiceDetailPage({
           { label: service.shortName },
         ]}
       />
+
+      {service.image && (
+        <section className="py-10 sm:py-12">
+          <Container>
+            <Reveal className="relative overflow-hidden rounded-2xl shadow-xl">
+              <Image
+                src={service.image}
+                alt={service.imageAlt ?? service.name}
+                width={1400}
+                height={900}
+                className="h-full max-h-[480px] w-full object-cover"
+                sizes="(min-width: 1024px) 90vw, 100vw"
+              />
+            </Reveal>
+          </Container>
+        </section>
+      )}
 
       <section className="py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr]">

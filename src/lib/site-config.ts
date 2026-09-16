@@ -38,6 +38,8 @@ export type Service = {
   summary: string;
   icon: string;
   heroDescription: string;
+  image?: string;
+  imageAlt?: string;
   features: string[];
   process: { title: string; description: string }[];
   faqs: { question: string; answer: string }[];
@@ -167,6 +169,9 @@ export const services: Service[] = [
       "When a monitored alarm confirms trouble, minutes matter. Our response teams are positioned to reach your property fast.",
     heroDescription:
       "Detection is only half the job. Securas backs every monitored alarm and camera alert with a real dispatch process, so a confirmed incident is met with a physical response, not just a phone call.",
+    image: "/images/guard-team-crop.jpg",
+    imageAlt:
+      "Two Securas Security Group officers beside a branded response vehicle, ready to deploy",
     features: [
       "Rapid mobile guard dispatch to confirmed alarms",
       "Coordinated hand-off to police, fire, or EMS when required",
@@ -281,6 +286,8 @@ export const services: Service[] = [
       "Trained, uniformed guards for static posts, mobile patrol, event security, and access control — a visible deterrent backed by real judgment.",
     heroDescription:
       "Cameras and alarms detect. Guards deter, respond, and make decisions on the ground. Our guard teams are trained for the specific site they work, from retail floors to construction yards to corporate lobbies.",
+    image: "/images/hero-guard.jpg",
+    imageAlt: "Uniformed Securas Security Group officer on post in front of the Toronto skyline",
     features: [
       "Static guard posts for commercial and residential properties",
       "Mobile patrol across multi-building or large sites",
@@ -395,6 +402,8 @@ export const services: Service[] = [
       "Scheduled and randomized patrol checks across your property or portfolio, with a visible presence that keeps opportunists away.",
     heroDescription:
       "For large sites, parking lots, and multi-property portfolios, a stationed guard isn't always the right fit. Mobile patrol delivers routine, verifiable checks and a visible deterrent across a wider footprint.",
+    image: "/images/patrol-car-toronto.jpg",
+    imageAlt: "Securas Security Group marked patrol vehicle with the Toronto skyline behind it",
     features: [
       "Scheduled and randomized patrol routes",
       "Coverage for parking lots, industrial sites, and vacant properties",
