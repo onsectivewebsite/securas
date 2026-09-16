@@ -21,7 +21,7 @@ export const siteConfig = {
     monitoring: "24 / 7 / 365 Monitoring & Emergency Dispatch",
   },
   serviceArea:
-    "Brampton, Mississauga, Vaughan, Caledon, and the wider Greater Toronto Area",
+    "Brampton, the Greater Toronto Area, and communities across Ontario",
   social: {
     facebook: "https://www.facebook.com/",
     instagram: "https://www.instagram.com/",

@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { Icon } from "./Icon";
 
@@ -36,17 +39,23 @@ export function PageHero({
           ))}
         </nav>
 
-        {eyebrow && (
-          <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-accent-500">
-            {eyebrow}
-          </p>
-        )}
-        <h1 className="mt-3 max-w-3xl font-heading text-4xl uppercase leading-tight tracking-wide text-white sm:text-5xl">
-          {title}
-        </h1>
-        {description && (
-          <p className="mt-4 max-w-2xl text-base text-slate-500 sm:text-lg">{description}</p>
-        )}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {eyebrow && (
+            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-accent-500">
+              {eyebrow}
+            </p>
+          )}
+          <h1 className="mt-3 max-w-3xl font-heading text-4xl uppercase leading-tight tracking-wide text-white sm:text-5xl">
+            {title}
+          </h1>
+          {description && (
+            <p className="mt-4 max-w-2xl text-base text-slate-500 sm:text-lg">{description}</p>
+          )}
+        </motion.div>
       </Container>
     </section>
   );

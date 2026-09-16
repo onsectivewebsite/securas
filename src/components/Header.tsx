@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Container } from "./Container";
 import { Icon } from "./Icon";
 import { Logo } from "./Logo";
@@ -17,14 +18,26 @@ const navLinks = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-navy-800 bg-navy-950/95 backdrop-blur">
+    <header
+      className={`sticky top-0 z-50 border-b border-navy-800 bg-navy-950/95 backdrop-blur transition-shadow duration-300 ${
+        scrolled ? "shadow-lg shadow-navy-950/40" : "shadow-none"
+      }`}
+    >
       <div className="hidden md:block bg-navy-900 text-mist-100 text-xs">
         <Container className="flex items-center justify-between py-1.5">
           <p className="flex items-center gap-1.5 text-slate-500">
-            <Icon name="clock" className="h-3.5 w-3.5 text-accent-500" />
-            {siteConfig.hours.monitoring}
+            <Icon name="mapPin" className="h-3.5 w-3.5 text-accent-500" />
+            Serving Across Ontario
           </p>
           <div className="flex items-center gap-5">
             <a
@@ -46,7 +59,7 @@ export function Header() {
       </div>
 
       <Container className="flex items-center justify-between py-3">
-        <Logo dark />
+        <Logo />
 
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) =>
@@ -64,25 +77,33 @@ export function Header() {
                   {link.label}
                   <Icon name="chevronRight" className="h-3.5 w-3.5 rotate-90" />
                 </Link>
-                {servicesOpen && (
-                  <div className="absolute left-0 top-full w-72 rounded-lg border border-navy-700 bg-navy-900 p-2 shadow-xl">
-                    {services.map((service) => (
-                      <Link
-                        key={service.slug}
-                        href={`/services/${service.slug}`}
-                        className="block rounded-md px-3 py-2 text-sm text-mist-100 hover:bg-navy-800 hover:text-accent-400 transition-colors"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                    <Link
-                      href="/services"
-                      className="mt-1 block rounded-md px-3 py-2 text-sm font-semibold text-accent-400 hover:bg-navy-800"
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18, ease: "easeOut" }}
+                      className="absolute left-0 top-full w-72 rounded-lg border border-navy-700 bg-navy-900 p-2 shadow-xl"
                     >
-                      View all services →
-                    </Link>
-                  </div>
-                )}
+                      {services.map((service) => (
+                        <Link
+                          key={service.slug}
+                          href={`/services/${service.slug}`}
+                          className="block rounded-md px-3 py-2 text-sm text-mist-100 hover:bg-navy-800 hover:text-accent-400 transition-colors"
+                        >
+                          {service.name}
+                        </Link>
+                      ))}
+                      <Link
+                        href="/services"
+                        className="mt-1 block rounded-md px-3 py-2 text-sm font-semibold text-accent-400 hover:bg-navy-800"
+                      >
+                        View all services →
+                      </Link>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
               <Link
@@ -113,45 +134,61 @@ export function Header() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
-          <Icon name={open ? "close" : "menu"} className="h-6 w-6" />
+          <motion.span
+            key={open ? "close" : "menu"}
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 0.18 }}
+            className="block"
+          >
+            <Icon name={open ? "close" : "menu"} className="h-6 w-6" />
+          </motion.span>
         </button>
       </Container>
 
-      {open && (
-        <div className="md:hidden border-t border-navy-800 bg-navy-950">
-          <Container className="flex flex-col py-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="py-3 text-base font-medium text-mist-100 border-b border-navy-800/60"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="grid grid-cols-1 gap-1 py-2">
-              {services.map((service) => (
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden overflow-hidden border-t border-navy-800 bg-navy-950"
+          >
+            <Container className="flex flex-col py-3">
+              {navLinks.map((link) => (
                 <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
+                  key={link.href}
+                  href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-md px-2 py-2 text-sm text-slate-500"
+                  className="py-3 text-base font-medium text-mist-100 border-b border-navy-800/60"
                 >
-                  {service.name}
+                  {link.label}
                 </Link>
               ))}
-            </div>
-            <a
-              href={`tel:${siteConfig.phoneHref}`}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-4 py-3 text-sm font-bold text-navy-950"
-            >
-              <Icon name="phone" className="h-4 w-4" />
-              Call {siteConfig.phone}
-            </a>
-          </Container>
-        </div>
-      )}
+              <div className="grid grid-cols-1 gap-1 py-2">
+                {services.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    onClick={() => setOpen(false)}
+                    className="rounded-md px-2 py-2 text-sm text-slate-500"
+                  >
+                    {service.name}
+                  </Link>
+                ))}
+              </div>
+              <a
+                href={`tel:${siteConfig.phoneHref}`}
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-accent-500 px-4 py-3 text-sm font-bold text-navy-950"
+              >
+                <Icon name="phone" className="h-4 w-4" />
+                Call {siteConfig.phone}
+              </a>
+            </Container>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

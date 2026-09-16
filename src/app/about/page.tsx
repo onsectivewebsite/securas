@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Icon, type IconName } from "@/components/Icon";
 import { fullAddress, siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Securas Security Group Inc., a Brampton-based security company delivering CCTV monitoring, alarm response, fire monitoring, and guard services across the GTA.",
+    "Learn about Securas Security Group Inc., a Brampton-based security company delivering CCTV monitoring, alarm response, fire monitoring, and guard services across Ontario.",
   alternates: { canonical: "/about" },
 };
 
@@ -46,7 +48,7 @@ export default function AboutPage() {
 
       <section className="py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-start">
-          <div>
+          <Reveal>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">
               Our Story
             </p>
@@ -60,7 +62,7 @@ export default function AboutPage() {
                 happens. Securas Security Group Inc. exists to close that gap.
               </p>
               <p>
-                We operate as a connected system — CCTV monitoring, alarm response,
+                We operate as a connected system &mdash; CCTV monitoring, alarm response,
                 fire and life-safety monitoring, guard services, access control, and
                 mobile patrol all feed into the same operations centre, so an incident
                 anywhere on your property gets seen and acted on.
@@ -71,9 +73,9 @@ export default function AboutPage() {
                 {siteConfig.serviceArea}.
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-2xl border border-mist-200 bg-white p-8 shadow-sm">
+          <Reveal delay={0.1} className="rounded-2xl border border-mist-200 bg-white p-8 shadow-sm">
             <h3 className="font-heading text-lg uppercase tracking-wide text-navy-900">
               Securas at a Glance
             </h3>
@@ -111,23 +113,41 @@ export default function AboutPage() {
                 </div>
               </div>
             </dl>
-          </div>
+          </Reveal>
+        </Container>
+      </section>
+
+      <section className="py-4 sm:py-6">
+        <Container>
+          <Reveal className="relative overflow-hidden rounded-2xl shadow-xl">
+            <Image
+              src="/images/guard-team-crop.jpg"
+              alt="Two uniformed Securas Security Group officers beside a branded patrol vehicle with the Toronto skyline in the background"
+              width={1249}
+              height={757}
+              className="h-full w-full object-cover"
+              sizes="(min-width: 1024px) 90vw, 100vw"
+            />
+          </Reveal>
         </Container>
       </section>
 
       <section className="bg-navy-900 py-16 sm:py-20">
         <Container>
-          <div className="mx-auto max-w-2xl text-center">
+          <Reveal className="mx-auto max-w-2xl text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-500">
               What Guides Us
             </p>
             <h2 className="mt-3 font-heading text-3xl uppercase tracking-wide text-white">
               Our Operating Principles
             </h2>
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          </Reveal>
+          <RevealGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
             {values.map((value) => (
-              <div key={value.title} className="rounded-xl border border-navy-700 bg-navy-950/60 p-6">
+              <RevealItem
+                key={value.title}
+                className="rounded-xl border border-navy-700 bg-navy-950/60 p-6"
+              >
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-accent-500/15 text-accent-500">
                   <Icon name={value.icon} className="h-5 w-5" />
                 </div>
@@ -137,27 +157,29 @@ export default function AboutPage() {
                 <p className="mt-2 text-sm leading-relaxed text-slate-500">
                   {value.description}
                 </p>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </Container>
       </section>
 
       <section className="py-16 sm:py-20">
         <Container className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">
-            Explore
-          </p>
-          <h2 className="mt-3 font-heading text-3xl uppercase tracking-wide text-navy-900">
-            See How We Protect Your Property
-          </h2>
-          <Link
-            href="/services"
-            className="mt-6 inline-flex items-center gap-2 rounded-md bg-navy-900 px-6 py-3.5 text-sm font-bold text-white hover:bg-navy-800 transition-colors"
-          >
-            View All Services
-            <Icon name="arrowRight" className="h-4 w-4" />
-          </Link>
+          <Reveal>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent-600">
+              Explore
+            </p>
+            <h2 className="mt-3 font-heading text-3xl uppercase tracking-wide text-navy-900">
+              See How We Protect Your Property
+            </h2>
+            <Link
+              href="/services"
+              className="mt-6 inline-flex items-center gap-2 rounded-md bg-navy-900 px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-navy-800"
+            >
+              View All Services
+              <Icon name="arrowRight" className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </Container>
       </section>
 

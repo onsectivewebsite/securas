@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
 import { JsonLd } from "@/components/JsonLd";
+import { Reveal, RevealGroup, RevealItem } from "@/components/Reveal";
 import { Icon, type IconName } from "@/components/Icon";
 import { getServiceBySlug, services, siteConfig } from "@/lib/site-config";
 
@@ -97,27 +98,31 @@ export default async function ServiceDetailPage({
       <section className="py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr]">
           <div>
-            <h2 className="font-heading text-2xl uppercase tracking-wide text-navy-900">
-              What&apos;s Included
-            </h2>
-            <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <Reveal>
+              <h2 className="font-heading text-2xl uppercase tracking-wide text-navy-900">
+                What&apos;s Included
+              </h2>
+            </Reveal>
+            <RevealGroup className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {service.features.map((feature) => (
-                <li
+                <RevealItem
                   key={feature}
                   className="flex items-start gap-3 rounded-lg border border-mist-200 bg-white p-4"
                 >
                   <Icon name="check" className="h-5 w-5 shrink-0 text-accent-600" />
                   <span className="text-sm text-slate-700">{feature}</span>
-                </li>
+                </RevealItem>
               ))}
-            </ul>
+            </RevealGroup>
 
-            <h2 className="mt-14 font-heading text-2xl uppercase tracking-wide text-navy-900">
-              How It Works
-            </h2>
-            <ol className="mt-6 space-y-6">
+            <Reveal>
+              <h2 className="mt-14 font-heading text-2xl uppercase tracking-wide text-navy-900">
+                How It Works
+              </h2>
+            </Reveal>
+            <RevealGroup className="mt-6 space-y-6" stagger={0.12}>
               {service.process.map((step, index) => (
-                <li key={step.title} className="flex gap-4">
+                <RevealItem key={step.title} className="flex gap-4">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 font-heading text-sm text-accent-500">
                     {index + 1}
                   </span>
@@ -127,33 +132,34 @@ export default async function ServiceDetailPage({
                     </h3>
                     <p className="mt-1 text-sm text-slate-600">{step.description}</p>
                   </div>
-                </li>
+                </RevealItem>
               ))}
-            </ol>
+            </RevealGroup>
 
-            <h2 className="mt-14 font-heading text-2xl uppercase tracking-wide text-navy-900">
-              Frequently Asked Questions
-            </h2>
-            <div className="mt-6 space-y-4">
+            <Reveal>
+              <h2 className="mt-14 font-heading text-2xl uppercase tracking-wide text-navy-900">
+                Frequently Asked Questions
+              </h2>
+            </Reveal>
+            <RevealGroup className="mt-6 space-y-4" stagger={0.08}>
               {service.faqs.map((faq) => (
-                <details
-                  key={faq.question}
-                  className="group rounded-lg border border-mist-200 bg-white p-5 open:border-accent-500/50"
-                >
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy-900">
-                    {faq.question}
-                    <Icon
-                      name="chevronRight"
-                      className="h-4 w-4 shrink-0 text-accent-600 transition-transform group-open:rotate-90"
-                    />
-                  </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
-                </details>
+                <RevealItem key={faq.question}>
+                  <details className="group rounded-lg border border-mist-200 bg-white p-5 open:border-accent-500/50">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-navy-900">
+                      {faq.question}
+                      <Icon
+                        name="chevronRight"
+                        className="h-4 w-4 shrink-0 text-accent-600 transition-transform group-open:rotate-90"
+                      />
+                    </summary>
+                    <p className="mt-3 text-sm leading-relaxed text-slate-600">{faq.answer}</p>
+                  </details>
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
 
-          <aside className="space-y-6">
+          <Reveal delay={0.1} className="space-y-6">
             <div className="rounded-2xl border border-navy-800 bg-navy-950 p-6 text-white">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent-500 text-navy-950">
                 <Icon name={service.icon as IconName} className="h-6 w-6" />
@@ -197,7 +203,7 @@ export default async function ServiceDetailPage({
                 ))}
               </ul>
             </div>
-          </aside>
+          </Reveal>
         </Container>
       </section>
 

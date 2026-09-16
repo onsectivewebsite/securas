@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
+import { Reveal } from "@/components/Reveal";
 import { Icon } from "@/components/Icon";
 import { fullAddress, siteConfig } from "@/lib/site-config";
 
@@ -26,7 +27,7 @@ export default function ContactPage() {
 
       <section className="py-16 sm:py-20">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr]">
-          <div>
+          <Reveal>
             <h2 className="font-heading text-2xl uppercase tracking-wide text-navy-900">
               Send Us a Message
             </h2>
@@ -36,9 +37,9 @@ export default function ContactPage() {
             <div className="mt-8 rounded-2xl border border-mist-200 bg-white p-6 sm:p-8">
               <ContactForm />
             </div>
-          </div>
+          </Reveal>
 
-          <div className="space-y-6">
+          <Reveal delay={0.1} className="space-y-6">
             <div className="rounded-2xl border border-navy-800 bg-navy-950 p-6 text-white sm:p-8">
               <h2 className="font-heading text-lg uppercase tracking-wide">
                 Contact Details
@@ -91,7 +92,7 @@ export default function ContactPage() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>

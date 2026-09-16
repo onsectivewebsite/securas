@@ -1,31 +1,24 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export function Logo({ dark = false }: { dark?: boolean }) {
+export function Logo({ className = "h-11 w-11" }: { className?: string }) {
   return (
     <Link
       href="/"
       className="flex items-center gap-2.5 shrink-0"
       aria-label="Securas Security Group Inc. — home"
     >
-      <svg viewBox="0 0 24 24" className="h-8 w-8 text-accent-500" aria-hidden="true">
-        <path
-          d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"
-          fill="currentColor"
+      <span className={`relative overflow-hidden rounded-md ${className}`}>
+        <Image
+          src="/images/logo.jpg"
+          alt="Securas Security Group shield logo"
+          fill
+          sizes="44px"
+          className="object-cover"
+          priority
         />
-        <path
-          d="m8.5 12.2 2.3 2.3 4.7-4.9"
-          fill="none"
-          stroke={dark ? "#081527" : "#0b1626"}
-          strokeWidth="1.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span
-        className={`font-heading text-xl leading-none tracking-wide uppercase ${
-          dark ? "text-white" : "text-navy-900"
-        }`}
-      >
+      </span>
+      <span className="font-heading text-xl leading-none tracking-wide uppercase text-white">
         Securas
         <span className="block text-[0.55rem] font-sans normal-case tracking-[0.2em] text-accent-500 mt-0.5">
           Security Group
