@@ -6,8 +6,8 @@ export const siteConfig = {
   description:
     "Securas Security Group Inc. delivers CCTV monitoring, alarm response, fire & life-safety monitoring, and professional guard services to homes and businesses across Brampton and the Greater Toronto Area.",
   url: "https://www.securassecuritygroup.com",
-  phone: "343-558-9669",
-  phoneHref: "+13435589669",
+  phone: "437-463-9131",
+  phoneHref: "+14374639131",
   email: "info@securassecuritygroup.com",
   address: {
     street: "22 Drexel Road",

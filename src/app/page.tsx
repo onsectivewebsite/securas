@@ -12,7 +12,7 @@ import { services, siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: `Security Company in Brampton, ON | ${siteConfig.name}`,
   description:
-    "Securas Security Group Inc. provides CCTV monitoring, alarm response, fire & life-safety monitoring, guard services, and mobile patrol across Brampton and the GTA. Call 343-558-9669.",
+    "Securas Security Group Inc. provides CCTV monitoring, alarm response, fire & life-safety monitoring, guard services, and mobile patrol across Brampton and the GTA. Call 437-463-9131.",
   alternates: { canonical: "/" },
 };
 

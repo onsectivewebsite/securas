@@ -60,7 +60,7 @@ export function ContactForm() {
             type="tel"
             required
             className="mt-2 w-full rounded-md border border-mist-200 bg-white px-3.5 py-2.5 text-sm text-navy-900 outline-none focus:border-accent-500 focus:ring-2 focus:ring-accent-500/30"
-            placeholder="(343) 555-0198"
+            placeholder="(437) 555-0198"
           />
         </div>
       </div>

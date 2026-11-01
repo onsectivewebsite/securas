@@ -9,7 +9,7 @@ import { fullAddress, siteConfig } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact Securas Security Group Inc. at 22 Drexel Road, Brampton, ON L6P 3V2 or call 343-558-9669 for CCTV monitoring, alarm response, and guard services across the GTA.",
+    "Contact Securas Security Group Inc. at 22 Drexel Road, Brampton, ON L6P 3V2 or call 437-463-9131 for CCTV monitoring, alarm response, and guard services across the GTA.",
   alternates: { canonical: "/contact" },
 };
 
