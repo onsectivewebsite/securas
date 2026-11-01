@@ -8,7 +8,7 @@ export const siteConfig = {
   url: "https://www.securassecuritygroup.com",
   phone: "437-463-9131",
   phoneHref: "+14374639131",
-  email: "info@securassecuritygroup.com",
+  email: "administration@securassecuritygroup.com",
   address: {
     street: "22 Drexel Road",
     city: "Brampton",
